@@ -1,0 +1,45 @@
+extend type Query {
+    doctors: [Doctor]
+    specialties: [Specialty]
+}
+
+type Doctor {
+    id: ID!
+    firstName: String
+    lastName: String
+    specialties: [Specialty]
+}
+
+enum Specialty {
+    ALLERGOLOGIST
+    ANDROLOGIST
+    ANESTHESIOLOGIST
+    CARDIOLOGIST
+    DERMATOLOGIST
+    DIABETOLOGIST
+    ENDOCRINOLOGIST
+    GASTROENTEROLOGIST
+    GENERAL_PRACTITIONER
+    GERIATRICIAN
+    GYNAECOLOGIST
+    HEMATOLOGIST
+    INTERNIST
+    NEPHROLOGIST
+    NEUROLOGIST
+    OBSTETRICIAN
+    ONCOLOGIST
+    OTOLARYNGOLOGIST
+    PEDIATRICIAN
+    PSYCHIATRIST
+    PULMONOLOGIST
+    RADIOLOGIST
+    SURGEON
+    UROLOGIST
+}
+
+extend type Mutation {
+    newDoctor(firstName: String!, lastName: String!, specialties: [Specialty]) : Doctor!
+    deleteDoctor(id: ID!) : Boolean
+    updateDoctor(id: ID!, firstName: String, lastName: String): Doctor
+    addSpecialty(id: ID!, newSpecialties: [Specialty]): Doctor
+}

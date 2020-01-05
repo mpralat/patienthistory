@@ -1,0 +1,25 @@
+extend type Query {
+    patientHistory(patientId: String!): [PatientHistoryEntry]
+}
+
+type PatientHistoryEntry {
+    id: ID!
+    createdAt: String
+    problemDescription: String
+    doctorId: String
+    prescriptionIds: [String]
+}
+
+extend type Mutation {
+    addPatientHistoryEntry(
+        patientId: String,
+        pesel: String,
+        problemDescription: String,
+        doctorId: String,
+        prescriptionIds: [String]
+    ) : PatientHistoryEntry
+
+    #    deleteDoctor(id: ID!) : Boolean
+#    updateDoctor(id: ID!, firstName: String, lastName: String): Doctor
+#    addSpecialty(id: ID!, newSpecialties: [Specialty]): Doctor
+}

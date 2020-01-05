@@ -1,0 +1,25 @@
+type Query {
+    patients: [Patient]
+    patient(id: String): Patient
+}
+
+type Patient {
+    id: ID!
+    firstName: String
+    lastName: String
+    pesel: String
+    age: Int
+    sex: Sex
+}
+
+enum Sex {
+    FEMALE
+    MALE
+    OTHER
+}
+
+type Mutation {
+    newPatient(firstName: String!, lastName: String!, pesel: String!, age: Int!, sex: Sex!) : Patient!
+    deletePatient(id: ID!) : Boolean
+    updatePatient(id: ID!, firstName: String, lastName: String, age: Int, sex: Sex): Patient
+}
