@@ -4,22 +4,24 @@ extend type Query {
 
 type PatientHistoryEntry {
     id: ID!
+    patient: Patient,
     createdAt: String
     problemDescription: String
-    doctorId: String
-    prescriptionIds: [String]
+    doctorId: String,
+    doctor: Doctor,
+    prescriptions: [String]
 }
 
 extend type Mutation {
     addPatientHistoryEntry(
         patientId: String,
         pesel: String,
-        problemDescription: String,
+        problemDescription: String!,
         doctorId: String,
-        prescriptionIds: [String]
+        prescriptions: [String]
     ) : PatientHistoryEntry
 
-    #    deleteDoctor(id: ID!) : Boolean
-#    updateDoctor(id: ID!, firstName: String, lastName: String): Doctor
+    deletePatientHistoryEntry(id: ID!) : Boolean
+    updatePatientHistoryEntry(id: ID!, problemDescription: String, prescriptions: [String]): PatientHistoryEntry
 #    addSpecialty(id: ID!, newSpecialties: [Specialty]): Doctor
 }

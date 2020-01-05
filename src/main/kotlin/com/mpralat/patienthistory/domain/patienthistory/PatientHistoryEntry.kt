@@ -14,6 +14,5 @@ data class PatientHistoryEntry constructor(
         val modifiedAt: Date,
         val problemDescription: String?,
         val doctorId: String,
-        val prescriptionIds: List<String>?
-// TODO  : MORE?
+        val prescriptions: List<String>?
 )

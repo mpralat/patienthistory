@@ -16,10 +16,9 @@ class PatientHistoryQueryResolver(
         return try {
             // if patientId is not in UUID format, think of it as PESEL number
             UUID.fromString(patientId)
-            patientHistoryRepository.findAllByPatientId(patientId)
+            return patientHistoryRepository.findAllByPatientId(patientId)
         } catch (exception: IllegalArgumentException) {
-            // todo throw sth useful
-            val patient = patientRepository.findPatientByPesel(patientId) ?: throw NoSuchFieldError()
+            val patient = patientRepository.findPatient(patientId) ?: throw NoSuchFieldError()
             patientHistoryRepository.findAllByPesel(pesel = patient.pesel)
         }
     }

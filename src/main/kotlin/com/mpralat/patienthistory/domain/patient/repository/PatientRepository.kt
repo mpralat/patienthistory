@@ -6,7 +6,6 @@ import org.springframework.stereotype.Repository
 
 @Repository
 interface PatientRepository : MongoRepository<Patient, String>, PatientCustomRepository {
-    fun findPatientByPesel(pesel: String): Patient?
-    fun findPatientById(id: String): Patient?
     fun deleteByPesel(pesel: String): List<Patient>
+    fun findByPesel(pesel: String): Patient
 }

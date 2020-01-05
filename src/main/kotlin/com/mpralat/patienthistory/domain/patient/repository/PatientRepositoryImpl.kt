@@ -29,6 +29,16 @@ class PatientRepositoryImpl(
         )
     }
 
+    override fun findPatient(id: String): Patient? {
+        val criteria = Criteria()
+        criteria.orOperator(Criteria.where("_id").`is`(id), Criteria.where("pesel").`is`(id))
+        val query = Query(criteria)
+        return mongoTemplate.findOne(
+                query,
+                Patient::class.java
+        )
+    }
+
     private fun prepareUpdate(firstName: String?, lastName: String?, age: Int?, sex: Sex?) : Update {
         val update = Update()
         if (lastName != null) update.set("lastName", lastName)
